@@ -1,27 +1,27 @@
 import React from 'react';
-import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { Home } from './pages/Home';
-import { Location } from './pages/Location';
-import { Reviews } from './pages/Reviews';
+import { Menu } from './pages/Menu';
+import { About } from './pages/About';
 import { Contact } from './pages/Contact';
 
-function App() {
+export function App() {
   return (
-    <BrowserRouter basename="/nick_burritos">
-      <div className="min-h-screen bg-white">
+    <Router>
+      <div className="min-h-screen flex flex-col">
         <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/location" element={<Location />} />
-          <Route path="/reviews" element={<Reviews />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
+        <main className="flex-grow">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/menu" element={<Menu />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </main>
         <Footer />
       </div>
-    </BrowserRouter>
+    </Router>
   );
 }
-
-export default App;

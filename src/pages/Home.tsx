@@ -1,248 +1,188 @@
-import React, { useState, useEffect } from 'react';
-import { ChevronRight } from 'lucide-react';
-
-interface MenuItem {
-  name: string;
-  price: string;
-  description: string;
-}
-
-interface SpecialOffer {
-  title: string;
-  time: string;
-  items: string[];
-}
-
-interface Testimonial {
-  initials: string;
-  name: string;
-  role: string;
-  text: string;
-}
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Clock, MapPin, Phone, Utensils } from 'lucide-react';
 
 export function Home() {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    // Simulate image loading
-    const img = new Image();
-    img.src = "https://static.wixstatic.com/media/11062b_7170340f908c46daa4e7e05a55d6fd88~mv2.jpg/v1/fill/w_1899,h_520,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/11062b_7170340f908c46daa4e7e05a55d6fd88~mv2.jpg";
-    img.onload = () => setIsLoading(false);
-  }, []);
-
-  const breakfastItems: MenuItem[] = [
-    { name: "Breakfast Burrito", price: "$9.99", description: "Eggs, potatoes, cheese & choice of meat" },
-    { name: "Chorizo & Eggs", price: "$10.99", description: "Served with rice, beans & tortillas" },
-    { name: "Huevos Rancheros", price: "$10.99", description: "Eggs over easy, served on corn tortillas with ranchera sauce" },
-    { name: "Chilaquiles", price: "$11.99", description: "Tortilla chips, ranchera sauce, eggs, cheese & sour cream" }
-  ];
-
-  const burritoItems: MenuItem[] = [
-    { name: "Regular Burrito", price: "$9.99", description: "Choice of meat, rice, beans & cheese" },
-    { name: "Super Burrito", price: "$11.99", description: "Choice of meat, rice, beans, cheese, guacamole & sour cream" },
-    { name: "Wet Burrito", price: "$12.99", description: "Super burrito covered with red or green sauce & melted cheese" },
-    { name: "Veggie Burrito", price: "$9.99", description: "Rice, beans, cheese, lettuce, tomato & guacamole" }
-  ];
-
-  const plateItems: MenuItem[] = [
-    { name: "Two Taco Plate", price: "$12.99", description: "Choice of meat" },
-    { name: "Two Enchilada Plate", price: "$13.99", description: "Choice of meat, red or green sauce" },
-    { name: "Chile Relleno Plate", price: "$13.99", description: "Two cheese-stuffed poblano peppers" },
-    { name: "Fajitas Plate", price: "$15.99", description: "Choice of meat with grilled peppers & onions" }
-  ];
-
-  const specialOffers: SpecialOffer[] = [
-    {
-      title: "Happy Hour",
-      time: "Monday-Friday, 2-5pm",
-      items: ["$2 off all burritos", "$1 off draft beers", "Free chips & salsa"]
-    },
-    {
-      title: "Taco Tuesday",
-      time: "Every Tuesday",
-      items: ["$1.50 tacos", "$5 margaritas", "Free guacamole"]
-    },
-    {
-      title: "Weekend Brunch",
-      time: "Saturday & Sunday, 9am-2pm",
-      items: ["Bottomless mimosas", "Free coffee refills", "Kids eat free"]
-    }
-  ];
-
-  const testimonials: Testimonial[] = [
-    {
-      initials: "JD",
-      name: "John Doe",
-      role: "Regular Customer",
-      text: "The best burritos in town! The service is always friendly and the food is consistently delicious."
-    },
-    {
-      initials: "AS",
-      name: "Alice Smith",
-      role: "Foodie",
-      text: "Their breakfast burritos are to die for! Perfect combination of flavors and always fresh ingredients."
-    },
-    {
-      initials: "MJ",
-      name: "Mike Johnson",
-      role: "Local",
-      text: "Great atmosphere and authentic Mexican food. The happy hour deals are unbeatable!"
-    }
-  ];
-
   return (
-    <div className="pt-20">
+    <div>
       {/* Hero Section */}
-      <header className="relative h-[70vh] flex items-center justify-center">
-        <div 
-          className={`absolute inset-0 z-0 transition-opacity duration-500 ${isLoading ? 'opacity-0' : 'opacity-100'}`}
-          style={{
-            backgroundImage: 'url("https://static.wixstatic.com/media/11062b_7170340f908c46daa4e7e05a55d6fd88~mv2.jpg/v1/fill/w_1899,h_520,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/11062b_7170340f908c46daa4e7e05a55d6fd88~mv2.jpg")',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-b from-orange-900/60 to-orange-900/40"></div>
+      <section className="relative h-screen flex items-center justify-center">
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/images/hero-bg.jpg"
+            alt="Delicious Mexican Food"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black bg-opacity-50" />
         </div>
-
-        {isLoading && (
-          <div className="absolute inset-0 z-0 bg-orange-100 animate-pulse"></div>
-        )}
-
-        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-          <h2 className="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-            Nick's Deli & Burritos
-          </h2>
-          <p className="text-white text-lg md:text-xl mb-8 max-w-2xl mx-auto">
-            Authentic Mexican cuisine made with fresh ingredients and served with a smile
+        <div className="relative z-10 text-center text-white px-4">
+          <h1 className="text-5xl md:text-6xl font-bold mb-6">
+            Authentic Mexican Cuisine
+          </h1>
+          <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">
+            Experience the true flavors of Mexico with our handcrafted burritos, tacos, and more
           </p>
-          <a 
-            href="#menu"
-            className="inline-flex items-center gap-2 bg-orange-500 text-white px-8 py-3 rounded-full font-semibold hover:bg-orange-600 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
-          >
-            View Our Menu
-            <ChevronRight className="h-5 w-5" />
-          </a>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              to="/menu"
+              className="bg-orange-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-orange-700 transition-colors"
+            >
+              View Menu
+            </Link>
+            <Link
+              to="/contact"
+              className="bg-white text-orange-900 px-8 py-3 rounded-lg font-semibold hover:bg-orange-50 transition-colors"
+            >
+              Order Now
+            </Link>
+          </div>
         </div>
-      </header>
+      </section>
 
-      {/* Menu Section */}
-      <section id="menu" className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-4">Our Menu</h2>
-          <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-            Discover our delicious selection of authentic Mexican dishes, made with fresh ingredients and traditional recipes
-          </p>
-          
-          {/* Breakfast */}
-          <div className="mb-16">
-            <h3 className="text-2xl font-bold mb-6 text-orange-900">Breakfast</h3>
-            <div className="grid md:grid-cols-2 gap-8">
-              {breakfastItems.map((item, index) => (
-                <div 
-                  key={index} 
-                  className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
-                >
-                  <div className="flex justify-between items-center mb-2">
-                    <h4 className="text-lg font-semibold text-gray-900">{item.name}</h4>
-                    <span className="text-orange-600 font-bold">{item.price}</span>
-                  </div>
-                  <p className="text-gray-600">{item.description}</p>
-                </div>
-              ))}
+      {/* Features Section */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Clock className="w-8 h-8 text-orange-600" />
+              </div>
+              <h3 className="text-xl font-semibold mb-2">Open Daily</h3>
+              <p className="text-gray-600">
+                Monday - Friday: 8am - 9pm<br />
+                Saturday - Sunday: 9am - 10pm
+              </p>
             </div>
-          </div>
-
-          {/* Burritos */}
-          <div className="mb-16">
-            <h3 className="text-2xl font-bold mb-6 text-orange-900">Burritos</h3>
-            <div className="grid md:grid-cols-2 gap-8">
-              {burritoItems.map((item, index) => (
-                <div 
-                  key={index} 
-                  className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
-                >
-                  <div className="flex justify-between items-center mb-2">
-                    <h4 className="text-lg font-semibold text-gray-900">{item.name}</h4>
-                    <span className="text-orange-600 font-bold">{item.price}</span>
-                  </div>
-                  <p className="text-gray-600">{item.description}</p>
-                </div>
-              ))}
+            <div className="text-center">
+              <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <MapPin className="w-8 h-8 text-orange-600" />
+              </div>
+              <h3 className="text-xl font-semibold mb-2">Visit Us</h3>
+              <p className="text-gray-600">
+                123 Burrito Street<br />
+                San Francisco, CA 94105
+              </p>
             </div>
-          </div>
-
-          {/* Plates */}
-          <div className="mb-16">
-            <h3 className="text-2xl font-bold mb-6 text-orange-900">Combination Plates</h3>
-            <p className="text-gray-600 mb-8">All plates served with rice, beans & tortillas</p>
-            <div className="grid md:grid-cols-2 gap-8">
-              {plateItems.map((item, index) => (
-                <div 
-                  key={index} 
-                  className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
-                >
-                  <div className="flex justify-between items-center mb-2">
-                    <h4 className="text-lg font-semibold text-gray-900">{item.name}</h4>
-                    <span className="text-orange-600 font-bold">{item.price}</span>
-                  </div>
-                  <p className="text-gray-600">{item.description}</p>
-                </div>
-              ))}
+            <div className="text-center">
+              <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Phone className="w-8 h-8 text-orange-600" />
+              </div>
+              <h3 className="text-xl font-semibold mb-2">Call Us</h3>
+              <p className="text-gray-600">
+                (555) 123-4567<br />
+                (555) 987-6543
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Special Offers Section */}
+      {/* About Section */}
       <section className="py-16 bg-orange-50">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-4">Special Offers</h2>
-          <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-            Don't miss out on our daily specials and happy hour deals
-          </p>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            {specialOffers.map((offer, index) => (
-              <div key={index} className="bg-white p-6 rounded-lg shadow-lg text-center">
-                <div className="text-orange-500 text-2xl font-bold mb-2">{offer.title}</div>
-                <p className="text-gray-600">{offer.time}</p>
-                <ul className="mt-4 text-left space-y-2">
-                  {offer.items.map((item, itemIndex) => (
-                    <li key={itemIndex}>• {item}</li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-3xl font-bold mb-6 text-orange-900">Our Story</h2>
+              <p className="text-gray-600 mb-4">
+                Founded in 1995, Nick's Burritos has been serving authentic Mexican cuisine to our community for over 25 years. Our commitment to quality ingredients and traditional recipes has made us a beloved local institution.
+              </p>
+              <p className="text-gray-600 mb-8">
+                Every dish we serve is crafted with care, using only the finest ingredients and time-honored techniques. From our signature burritos to our fresh-made salsas, we take pride in bringing the authentic flavors of Mexico to your table.
+              </p>
+              <Link
+                to="/about"
+                className="inline-flex items-center text-orange-600 hover:text-orange-700 font-semibold"
+              >
+                Learn more about us
+                <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
+            </div>
+            <div className="relative h-96 rounded-2xl overflow-hidden">
+              <img
+                src="/images/about-section.jpg"
+                alt="Restaurant Interior"
+                className="w-full h-full object-cover"
+              />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-4">What Our Customers Say</h2>
-          <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-            Join our growing family of satisfied customers
-          </p>
-          
+      {/* Featured Items */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold mb-12 text-center text-orange-900">Featured Items</h2>
           <div className="grid md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-white p-6 rounded-lg shadow-lg">
-                <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center text-orange-500 font-bold">
-                    {testimonial.initials}
-                  </div>
-                  <div className="ml-4">
-                    <div className="font-semibold">{testimonial.name}</div>
-                    <div className="text-sm text-gray-500">{testimonial.role}</div>
-                  </div>
-                </div>
-                <p className="text-gray-600">"{testimonial.text}"</p>
-                <div className="mt-4 text-orange-500">★★★★★</div>
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+              <div className="relative h-48">
+                <img
+                  src="/images/featured-1.jpg"
+                  alt="Super Burrito"
+                  className="w-full h-full object-cover"
+                />
               </div>
-            ))}
+              <div className="p-6">
+                <h3 className="text-xl font-semibold mb-2">Super Burrito</h3>
+                <p className="text-gray-600 mb-4">
+                  Our signature burrito packed with your choice of meat, rice, beans, cheese, guacamole & sour cream
+                </p>
+                <span className="text-orange-600 font-bold">$11.99</span>
+              </div>
+            </div>
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+              <div className="relative h-48">
+                <img
+                  src="/images/featured-2.jpg"
+                  alt="Taco Plate"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-semibold mb-2">Taco Plate</h3>
+                <p className="text-gray-600 mb-4">
+                  Two tacos with your choice of meat, served with rice, beans, and tortillas
+                </p>
+                <span className="text-orange-600 font-bold">$12.99</span>
+              </div>
+            </div>
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+              <div className="relative h-48">
+                <img
+                  src="/images/featured-3.jpg"
+                  alt="Enchilada Plate"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-semibold mb-2">Enchilada Plate</h3>
+                <p className="text-gray-600 mb-4">
+                  Two enchiladas with your choice of meat and sauce, served with rice and beans
+                </p>
+                <span className="text-orange-600 font-bold">$13.99</span>
+              </div>
+            </div>
           </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16 bg-orange-900 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl font-bold mb-6">Ready to Order?</h2>
+          <p className="text-xl mb-8 max-w-2xl mx-auto">
+            Visit us today and experience the authentic flavors of Mexico
+          </p>
+          <Link
+            to="/contact"
+            className="inline-flex items-center bg-white text-orange-900 px-8 py-3 rounded-lg font-semibold hover:bg-orange-50 transition-colors"
+          >
+            Contact Us
+            <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </Link>
         </div>
       </section>
     </div>
